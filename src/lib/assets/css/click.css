@@ -1,0 +1,54 @@
+.container {
+	width: 1280px;
+	height:720px;
+	background-image: url($lib/assets/images/content_bg.png);
+	position: relative;
+}
+
+.title {
+	position: absolute;
+	width:100%;
+	text-align: center;
+	font-size: 32px;
+	top:30%;
+	font-family: 'NanumGothic';
+	font-weight: bold;
+	color: #12156d;
+}
+.qa_content {
+	position: absolute;
+	width: 100%;
+	display: flex;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	font-size: 45px;
+  align-items: center;
+	top:60%;
+  justify-content: center;
+}
+.qa_content button.answer {
+	background: linear-gradient(180deg, rgba(223, 245, 255, 0.89) 0%, rgba(154, 221, 250, 0.81) 100%);
+	background-blend-mode: multiply;
+	border: 4px solid #6CB2F2;
+	padding: 10px 20px;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-weight: 700;
+	color:#ff0000;
+	margin: 0 10px;
+	border-radius: 20px;
+}
+.qa_content button.answer:hover {
+	border: 4px solid #188fff;
+}
+.btn-prev {
+	position: absolute;
+	left:5px;
+	top:50%;
+	cursor: pointer;
+}
+.btn-next {
+	position: absolute;
+	right:5px;
+	top:50%;
+	cursor: pointer;
+}
