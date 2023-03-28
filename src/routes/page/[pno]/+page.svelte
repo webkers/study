@@ -3,6 +3,7 @@
 
 	import { pageData } from '$lib/store/page.js'
 	import Click from '$lib/components/Click.svelte'
+	import Drag from '$lib/components/Drag.svelte'
 	import Movie from '$lib/components/Movie.svelte'
 	import { onMount } from 'svelte'
 
@@ -47,6 +48,9 @@
 			{/if}
 			{#if contents.type === "click"} 
 				<Click {contents} {setPageNo} />
+			{/if}
+			{#if contents.type === "drag"} 
+				<Drag {contents} {setPageNo} />
 			{/if}
 		{/if}
 	</div>
