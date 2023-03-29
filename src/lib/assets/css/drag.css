@@ -19,30 +19,30 @@
 .answer {
     position: absolute;
     bottom: 5%;
-    left: 160px;
+    left: 130px;
     display:flex;
     gap: 10px;
 }
 .answer .col-1 {
-    width: 180px;
-    height: 55px;
+    width: 198px;
+    height: 70px;
     background-color: #7aaad3;
     box-shadow: 1px 2px 2px 2px #466f99 inset;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .answer .col-2 {
-    width: 360px;
-    height: 55px;
+    width: 398px;
+    height: 70px;
     background-color: #7aaad3;
     box-shadow: 1px 2px 2px 2px #466f99 inset;
-    border-radius: 20px;
+    border-radius: 30px;
 }
 
 .card-list {
     position: absolute;
-    width: 460px;
-    right: 100px;
+    width: 440px;
+    right: 80px;
     top: 28%;
 }
 

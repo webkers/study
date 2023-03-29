@@ -6,26 +6,69 @@
 	import BtnNext from '$lib/assets/images/btn_next.png'
 
 	export let contents = null;
+	export let widthScale = 1;
 	export let setPageNo = function (page) {}
 
-	let mode = "question";
+	let answerEl = [];
+	let cardsPositions = [];
 
-	console.log({contents})
+	resetCardPosition ();
 
 	function movePage (pageNo) {
-		mode = "question";
+		resetCardPosition ();
 		setPageNo(pageNo)
 	}
 
-	function handleDragStart (e) {
-		console.log({e});
+	function resetCardPosition () {
+		if(contents?.cards) {
+			for( const card of contents.cards) {
+				cardsPositions.push({ x: 0, y: 0 });
+			}
+		}
 	}
 
-	function handleDragEnd (e) {
-		const rect = e.target.getBoundingClientRect();
-		console.log({rect});
-		console.log(e.target.style);
-		// e.srcElement.style.transform = "translate3d( 0px, 0px, 0px)"
+	function handleDrag (e, idx) {
+		const { index } = snapDrag(e.target, idx);
+		if(answerEl[index]) {
+			answerEl[index].style.border = "5px solid #5d64f0";
+		}else {
+			for( const el of answerEl) {
+				el.style.border = "none";
+			}
+		}
+	}
+
+	function handleDragEnd (e, idx) {
+		const { answer:targetAnswer, index } = snapDrag(e.target, idx);
+
+		for( const el of answerEl) {
+			el.style.border = "none";
+		}
+
+		if(targetAnswer) {
+			if(e.target.innerText !== targetAnswer) {
+				cardsPositions[idx] = { x: 0, y: 0 };
+			}
+		}else {
+			cardsPositions[idx] = { x: 0, y: 0 };
+		}
+	}
+
+	function snapDrag (target, idx) {
+		const snapGap = 30; // snap 자석 효과의 강도조절
+		const targetRect = target.getBoundingClientRect();
+		if(answerEl?.length) {
+			for( const [index, el] of answerEl.entries() ) {
+				const rect = el.getBoundingClientRect();
+				if(Math.abs(targetRect.y - rect.y) < snapGap && Math.abs(targetRect.x - rect.x) < snapGap) {
+					target.style.transform = `translate( 0px, 0px)`;
+					const gapRect = target.getBoundingClientRect();
+					cardsPositions[idx] = { x: (rect.x - gapRect.x) / widthScale, y: (rect.y - gapRect.y) / widthScale };
+					return {answer: contents.answers[index], index};
+				}
+			}
+		}
+		return {answer: "", index: null};
 	}
 
 </script>
@@ -36,11 +79,11 @@
 	<div class="title">
 		{contents?.title}
 	</div>
-	{/if}
+	{/if} 
 	{#if contents?.answers}
 	<div class="answer">
-		{#each contents.answer_grids as grid}
-		<div class={`col-${grid}`}></div>
+		{#each contents.answer_grids as grid, idx}
+		<div class={`col-${grid}`} bind:this={answerEl[idx]} ></div>
 		{/each}
 	</div>
 	{/if}
@@ -49,9 +92,12 @@
 		<ul>
 			{#each contents.grids as grid, idx}
 				<li class={`col-${grid}`} 
-					use:draggable={{ bounds: 'body', applyUserSelectHack: true }}
-					on:neodrag:start={handleDragStart}
-					on:neodrag:end={handleDragEnd}
+					use:draggable={{ bounds: 'body', applyUserSelectHack: true, position: cardsPositions[idx], onDrag: ({ offsetX, offsetY}) => {
+						cardsPositions[idx] = { x: offsetX, y: offsetY };
+					} 
+					}}
+					on:neodrag={(e) => handleDrag(e, idx)}
+					on:neodrag:end={ (e) => handleDragEnd(e, idx)}
 				>{contents.cards[idx]}</li>
 			{/each}
 		</ul>

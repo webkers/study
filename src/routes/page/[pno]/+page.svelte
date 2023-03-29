@@ -5,6 +5,7 @@
 	import Click from '$lib/components/Click.svelte'
 	import Drag from '$lib/components/Drag.svelte'
 	import Movie from '$lib/components/Movie.svelte'
+	import Scratch from '$lib/components/Scratch.svelte'
 	import { onMount } from 'svelte'
 
   export let data;
@@ -42,17 +43,23 @@
 
 <div class="wrap">
 	<div style={`transform: scale(${widthScale}, ${widthScale})`}>
-		{#if contents?.type} 
-			{#if contents.type === "movie"} 
-				<Movie {setPageNo} />
+		{#key pageNo}
+			{#if contents?.type} 
+				{#if contents.type === "movie"} 
+					<Movie {setPageNo} />
+				{/if}
+				{#if contents.type === "click"} 
+					<Click {contents} {setPageNo} />
+				{/if}
+				{#if contents.type === "drag"} 
+					<Drag {contents} {setPageNo} bind:widthScale={widthScale} />
+				{/if}
+				{#if contents.type === "scratch"} 
+					<Scratch {contents} {setPageNo} />
+				{/if}
 			{/if}
-			{#if contents.type === "click"} 
-				<Click {contents} {setPageNo} />
-			{/if}
-			{#if contents.type === "drag"} 
-				<Drag {contents} {setPageNo} />
-			{/if}
-		{/if}
+		{/key}
+
 	</div>
 </div>
 
