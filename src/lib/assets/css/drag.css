@@ -1,11 +1,11 @@
-.container {
+.container.drag-block {
 	width: 1280px;
 	height:720px;
 	background-image: url($lib/assets/images/drag/content_bg.png);
 	position: relative;
 }
 
-.title {
+.drag-block .title {
 	position: absolute;
 	width:100%;
 	text-align: center;
@@ -16,14 +16,14 @@
 	color: #000000;
 }
 
-.answer {
+.drag-block .answer {
     position: absolute;
     bottom: 5%;
     left: 130px;
     display:flex;
     gap: 10px;
 }
-.answer .col-1 {
+.drag-block .answer .col-1 {
     width: 198px;
     height: 70px;
     background-color: #7aaad3;
@@ -31,7 +31,7 @@
     border-radius: 30px;
 }
 
-.answer .col-2 {
+.drag-block .answer .col-2 {
     width: 398px;
     height: 70px;
     background-color: #7aaad3;
@@ -39,14 +39,14 @@
     border-radius: 30px;
 }
 
-.card-list {
+.drag-block .card-list {
     position: absolute;
     width: 440px;
     right: 80px;
     top: 28%;
 }
 
-.card-list ul {
+.drag-block .card-list ul {
     display: flex;
     flex-wrap: wrap;
     background-image: url($lib/assets/images/drag/selectBox.png);
@@ -54,7 +54,7 @@
     background-size: 100% 100%;
 }
 
-.card-list ul li{
+.drag-block .card-list ul li{
     background-size: 100% 100%;
     font-size: 30px;
     text-align: center;
@@ -64,14 +64,27 @@
     text-shadow: 1px 1px 1px #1d1f58;
 	color:#ffffff;
 }
-.card-list ul li.col-1 {
+.drag-block .card-list ul li.col-1 {
     background-image: url($lib/assets/images/drag/card.png);
     width: 50%;
     max-width: 50%;
 }
 
-.card-list ul li.col-2 {
+.drag-block .card-list ul li.col-2 {
     background-image: url($lib/assets/images/drag/card2.png);
     width: 100%;
     max-width: 100%;
+}
+
+.drag-block .btn-prev {
+	position: absolute;
+	left:5px;
+	top:50%;
+	cursor: pointer;
+}
+.drag-block .btn-next {
+	position: absolute;
+	right:5px;
+	top:50%;
+	cursor: pointer;
 }

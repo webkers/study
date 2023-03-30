@@ -1,0 +1,55 @@
+.container.scratch-block{
+	width: 1280px;
+	height:720px;
+	background-image: url($lib/assets/images/scratch/content_bg.png);
+	position: relative;
+}
+
+.scratch-block .title {
+	position: absolute;
+	width:100%;
+	text-align: center;
+	font-size: 28px;
+	top:20%;
+	font-family: 'NanumGothic';
+	font-weight: bold;
+	color: #333333;
+}
+
+.scratch-block .question {
+	position: absolute;
+	width:100%;
+	text-align: center;
+	font-size: 29px;
+	top:32%;
+	font-weight:400;
+	font-family: 'NanumGothic';
+	color: #FFFFFF;
+}
+
+.scratch-block .cards {
+	position: absolute;
+	width:100%;
+	top:42%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap:10px;
+}
+
+.scratch-block .cards .card-item {
+	border: 5px solid #FFFFFF;
+}
+
+.scratch-block .btn-prev {
+	position: absolute;
+	left:5px;
+	top:50%;
+	cursor: pointer;
+}
+.scratch-block .btn-next {
+	position: absolute;
+	right:5px;
+	top:50%;
+	cursor: pointer;
+}

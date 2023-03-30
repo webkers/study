@@ -74,7 +74,7 @@
 </script>
 
 
-<div class="container">
+<div class="container drag-block">
 	{#if contents?.title}
 	<div class="title">
 		{contents?.title}

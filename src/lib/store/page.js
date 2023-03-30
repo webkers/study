@@ -15,7 +15,7 @@ export const pageData = writable([
 		"question_e": "봄이 좋아요",
 		"answer_s": "있어요. 그래서",
 		"answer_e": "있어서",
-		"prev_page": "01",
+		"prev_page": "",
 		"next_page": "06_02",
 	},
 	{
@@ -38,7 +38,7 @@ export const pageData = writable([
 		"answer_s": "더워요. 그래서",
 		"answer_e": "더워서",
 		"prev_page": "06_02",
-		"next_page": "06_04",
+		"next_page": "",
 	},
 	{
 		"page": "07_01",

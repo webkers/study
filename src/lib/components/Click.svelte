@@ -20,12 +20,12 @@
 </script>
 
 
-<div class="container">
+<div class="container click-block">
 	{#if contents?.title}
 	<div class="title">
 		{contents?.title}
 	</div>
-	<div class="qa_content">
+	<div class="qa-content">
 		<div class="question">{contents?.question_s}</div>
 		<button class="answer" on:click={ () => mode = "answer"}>
 			{#if mode === "answer"}

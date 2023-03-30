@@ -20,6 +20,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@neodrag/svelte": "^2.0.3"
+		"@neodrag/svelte": "^2.0.3",
+		"fabric": "^5.3.0"
 	}
 }
