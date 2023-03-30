@@ -33,7 +33,6 @@
 			{:else}
 				{contents?.answer_s}
 			{/if}
-			
 		</button>
 		<div class="question">{contents?.question_e}</div>
 	</div>
