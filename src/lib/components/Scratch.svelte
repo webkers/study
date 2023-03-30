@@ -103,7 +103,7 @@
 			<div class="card-item" style={`background:url(${card.after}) 100% 100%`}>
 				<canvas id={`card-canvas-${index}`} />
 				<div class="card-frame">
-					<img src="../src/lib/assets/images/scratch/card_frame.png" alt="">
+					<img src="/images/scratch/card_frame.png" alt="">
 				</div>
 			</div>
 		{/each}
