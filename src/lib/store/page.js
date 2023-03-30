@@ -47,12 +47,12 @@ export const pageData = writable([
 		"question": "적용문법: -어서",
 		"cards": [
 			{
-				"before": "놀다",
-				"after": "놀아서"
+				"before": "/images/scratch1_s.svg",
+				"after": "/images/scratch1_e.svg"
 			},
 			{
-				"before": "좋다",
-				"after": "좋아서"
+				"before": "/images/scratch1_s.svg",
+				"after": "/images/scratch1_e.svg"
 			},
 		],
 		"prev_page": "",
@@ -65,12 +65,12 @@ export const pageData = writable([
 		"question": "적용문법: -어서",
 		"cards": [
 			{
-				"before": "가다",
-				"after": "가서"
+				"before": "/images/scratch1_s.svg",
+				"after": "/images/scratch1_e.svg"
 			},
 			{
-				"before": "자다",
-				"after": "자서"
+				"before": "/images/scratch1_s.svg",
+				"after": "/images/scratch1_e.svg"
 			},
 		],
 		"prev_page": "07_01",

@@ -11,6 +11,7 @@
 
 	console.log({contents})
 
+	let drawingMode = false;
 	let cards = [];
 
 	function movePage (pageNo) {
@@ -19,31 +20,57 @@
 
 	function initCanvas () {
 		if(contents.cards?.length) {
-			for(const [index, card] of contents.cards.entries() ) {
+			for(const [index, c] of contents.cards.entries() ) {
 
 				const canvas = new fabric.Canvas(`card-canvas-${index}`, { 
 					selection: false,
 					width: 430,
 					height: 200,
-					isDrawingMode: true
+					preserveObjectStacking: true
 				});
 
-				canvas.freeDrawingBrush = new fabric.PencilBrush(canvas);
-				canvas.freeDrawingBrush.width = 30;
-				canvas.freeDrawingBrush.color = '#FFFFFF';
+				let svg;
+				fabric.loadSVGFromURL(c.before, function(objects, options) {
+					svg = fabric.util.groupSVGElements(objects, options);
 
-				fabric.loadSVGFromURL('http://cdn.shopify.com/s/files/1/0496/1029/files/Freesample.svg?5153', function(objects, options) {
-					const svg = fabric.util.groupSVGElements(objects, options);
-					svg.left = 50;
-					svg.top = 50;
-					svg.globalCompositeOperation = "source-in"
-					svg.scaleToWidth(100);
-					svg.scaleToHeight(100);
+					svg.left = 0;
+					svg.top = 0;
+					svg.scaleX = svg.width / canvas.width;
+					svg.scaleY = svg.height / canvas.height;
+					svg.evented =  false;
+					svg.globalCompositeOperation = "xor"
+
 					canvas.add(svg);
 					canvas.renderAll();
-				});
+				})
 
+				canvas.on("mouse:down", function (options) {
+					drawingMode = true;
+				})
 
+				canvas.on("mouse:up", function (options) {
+					drawingMode = false;
+				})
+
+				canvas.on("mouse:move", function (options) {
+						if(drawingMode) drawDot(options.absolutePointer.x, options.absolutePointer.y);
+						canvas.bringToFront(svg)
+						canvas.renderAll();
+				})
+
+				function drawDot(x, y) {
+					const circle = new fabric.Circle({
+						radius: 30,
+						left: x,
+						top: y,
+						originX: 'center',
+						originY: 'center',
+						evented: false,
+						fill: 'white',
+						strokeWidth: 3
+					});
+					canvas.add(circle);
+				}
 
 				const card = {
 
@@ -73,8 +100,11 @@
 	{#if contents?.cards}
 	<div class="cards">
 		{#each contents.cards as card, index}
-			<div class="card-item">
+			<div class="card-item" style={`background:url(${card.after}) 100% 100%`}>
 				<canvas id={`card-canvas-${index}`} />
+				<div class="card-frame">
+					<img src="../src/lib/assets/images/scratch/card_frame.png" alt="">
+				</div>
 			</div>
 		{/each}
 	</div>
